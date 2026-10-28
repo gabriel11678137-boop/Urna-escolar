@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+        <meta charset="UTF-8">
+        <title>Urna Eletronica</title>
+        <link rel="stylesheet" href="Chapa.css">
+  </head>
+  <body>
+    <main class="painel">
+      <h1>Urna Escolar</h1>
+
+      <table class="tabela-chapas">
+        <tbody>
+          <tr>
+            <td>Inovação</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>Futuro</td>
+            <td>20</td>
+          </tr>
+          <tr>
+            <td>Transformação</td>
+            <td>30</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <form id="form-identificacao">
+        <label for="nome">Nome:</label>
+        <input id="nome" name="nome" type="text">
+        <button type="submit">Continuar</button>
+        <p id="mensagem"></p>
+      </form>
+
+      <form id="formulario">
+        <label for="numeroCandidato">Número do candidato:</label>
+        <input type="text" id="numeroCandidato" placeholder="00">
+        <button type="submit">CONFIRMA</button>
+      </form>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
