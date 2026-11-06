@@ -1,14 +1,16 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #8b7f7f;
+  background-color: #0f0a0a;
   margin: 0;
   padding: 30px;
 }
 
 .painel {
-  background-color: rgb(20, 13, 13);
-  color: white;
+  box-sizing: border-box;
+  background-color: rgb(242, 243, 242);
+  color: rgb(3, 3, 3);
   max-width: 450px;
+  width: 100%;
   margin: 40px auto;
   padding: 25px;
   border-radius: 10px;
@@ -17,6 +19,27 @@ body {
 
 h1 {
   color: #43b581;
+  margin: 0;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.logo-escola {
+  display: block;
+  box-sizing: border-box;
+  width: 126px;
+  height: 78px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 6px;
 }
 
 form {
@@ -26,9 +49,39 @@ form {
   text-align: left;
 }
 
-input {
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+}
+
+fieldset[hidden] {
+  display: none;
+}
+
+input,
+select {
   padding: 12px;
   font-size: 16px;
+}
+
+#revisaoVoto label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#confirmacaoDados {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
 }
 
 button {
@@ -65,4 +118,29 @@ button:hover {
 
 #mensagem {
   font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 16px;
+  }
+
+  .painel {
+    margin: 16px auto;
+    padding: 20px 16px;
+  }
+
+  .logo-escola {
+    width: 82px;
+    height: 54px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .tabela-chapas th,
+  .tabela-chapas td {
+    padding: 8px;
+  }
 }

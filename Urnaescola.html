@@ -2,14 +2,25 @@
 <html lang="pt-BR">
 <head>
         <meta charset="UTF-8">
-        <title>Urna Eletronica</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Urna Eletronica</title>
         <link rel="stylesheet" href="Chapa.css">
+        <script src="Chapa.js" defer></script>
   </head>
   <body>
     <main class="painel">
-      <h1>Urna Escolar</h1>
+      <header class="cabecalho">
+        <img class="logo-escola" src="logo-escola.png" alt="Logotipo da Escola Estadual Duarte de Abreu">
+        <h1>Urna Escolar</h1>
+      </header>
 
       <table class="tabela-chapas">
+        <thead>
+          <tr>
+            <th>Chapa</th>
+            <th>Número</th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td>Inovação</td>
@@ -26,20 +37,51 @@
         </tbody>
       </table>
 
-      <form id="form-identificacao">
-        <label for="nome">Nome:</label>
-        <input id="nome" name="nome" type="text">
-        <button type="submit">Continuar</button>
-        <p id="mensagem"></p>
-      </form>
-
+      <p id="ajudaVotacao">A votação tem duas etapas: primeiro informe seu nome e código de estudante, depois escolha uma chapa. Na revisão, confira seus dados e confirme o voto.</p>
       <form id="formulario">
-        <label for="numeroCandidato">Número do candidato:</label>
-        <input type="text" id="numeroCandidato" placeholder="00">
-        <button type="submit">CONFIRMA</button>
+        <fieldset id="etapaIdentificacao" aria-labelledby="tituloIdentificacao">
+          <legend id="tituloIdentificacao">Etapa 1 de 2: Identificação do estudante</legend>
+          <label for="nomeEstudante">Nome do estudante:</label>
+          <input type="text" id="nomeEstudante" placeholder="Digite seu nome completo" aria-describedby="ajudaNome erroNome" autocomplete="name" required>
+          <small id="ajudaNome">Informe seu nome para que ele seja salvo junto à confirmação do voto.</small>
+          <small id="erroNome" hidden></small>
+          <label for="codigoEleitor">Código do estudante:</label>
+          <input type="text" id="codigoEleitor" placeholder="7 caracteres, letras e números" aria-describedby="ajudaCodigo erroCodigo" autocomplete="off" minlength="7" maxlength="7" pattern="[A-Za-z0-9]{7}" required>
+          <small id="ajudaCodigo">Digite seu código pessoal com exatamente 7 caracteres alfanuméricos. Confira o código na revisão antes de confirmar.</small>
+          <small id="erroCodigo" hidden></small>
+          <button id="continuarVotacao" type="button">Continuar para escolha</button>
+        </fieldset>
+        <fieldset id="etapaEscolha" aria-labelledby="tituloEscolha" hidden>
+          <legend id="tituloEscolha">Etapa 2 de 2: Escolha do candidato</legend>
+          <label for="numeroCandidato">Número do candidato:</label>
+          <select id="numeroCandidato" aria-describedby="ajudaChapa erroChapa" required disabled>
+            <option value="">Selecione uma chapa</option>
+            <option value="10">Inovação (10)</option>
+            <option value="20">Futuro (20)</option>
+            <option value="30">Transformação (30)</option>
+          </select>
+          <small id="ajudaChapa">Escolha uma das chapas listadas; somente essas opções podem ser votadas.</small>
+          <small id="erroChapa" hidden></small>
+          <button id="voltarIdentificacao" type="button">Voltar à identificação</button>
+          <button type="submit">Revisar voto</button>
+        </fieldset>
       </form>
+      <section id="revisaoVoto" aria-labelledby="tituloRevisao" hidden>
+        <h2 id="tituloRevisao">Revise seu voto</h2>
+        <p>Estudante: <strong id="nomeEstudanteEscolhido"></strong></p>
+        <p>Código do estudante: <strong id="codigoEstudanteEscolhido"></strong></p>
+        <p>Você escolheu <strong id="chapaEscolhida"></strong>.</p>
+        <label for="confirmacaoDados">
+          <input type="checkbox" id="confirmacaoDados" required>
+          Conferi meu nome e meu código de estudante; estão corretos.
+        </label>
+        <button id="confirmarVoto" type="button">Confirmar voto</button>
+        <button id="corrigirIdentificacao" type="button">Corrigir identificação</button>
+        <button id="alterarVoto" type="button">Alterar escolha</button>
+      </section>
+      <p id="mensagem" role="status" aria-live="polite"></p>
+      <p id="erroGeral" role="alert" aria-live="assertive"></p>
+      <p>A votação, o nome e o código confirmados são salvos neste navegador e permanecem após recarregar a página. Os resultados não são exibidos durante a votação nem compartilhados entre dispositivos.</p>
     </main>
-
-    <script src="script.js"></script>
   </body>
 </html>
